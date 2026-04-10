@@ -17,18 +17,18 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 ### Employee Identification
 
-- [ ] **IDENT-01**: Система определяет сотрудника по привязке Telegram-аккаунта к записи в справочнике
-- [ ] **IDENT-02**: Система определяет сотрудника по шаблону/ключевым словам в подписи к фото
-- [ ] **IDENT-03**: Система использует привязку группы к ограниченному перечню сотрудников как fallback
-- [ ] **IDENT-04**: Если сотрудник не определен однозначно, сообщение отправляется на ручную проверку
-- [ ] **IDENT-05**: Если в одном сообщении указано несколько сотрудников, каждый обрабатывается отдельно
+- [x] **IDENT-01**: Система определяет сотрудника по привязке Telegram-аккаунта к записи в справочнике
+- [x] **IDENT-02**: Система определяет сотрудника по шаблону/ключевым словам в подписи к фото
+- [x] **IDENT-03**: Система использует привязку группы к ограниченному перечню сотрудников как fallback
+- [x] **IDENT-04**: Если сотрудник не определен однозначно, сообщение отправляется на ручную проверку
+- [x] **IDENT-05**: Если в одном сообщении указано несколько сотрудников, каждый обрабатывается отдельно
 
 ### Shift Date Resolution
 
-- [ ] **SHIFT-01**: Система определяет дату смены по фактическому времени публикации сообщения
-- [ ] **SHIFT-02**: Для ночных смен система корректно разрешает дату через настраиваемое окно (date_offset)
+- [x] **SHIFT-01**: Система определяет дату смены по фактическому времени публикации сообщения
+- [x] **SHIFT-02**: Для ночных смен система корректно разрешает дату через настраиваемое окно (date_offset)
 - [x] **SHIFT-03**: Временные окна подтверждения смены настраиваются отдельно для каждой группы/объекта
-- [ ] **SHIFT-04**: Фото, отправленное за пределами допустимого окна, отправляется на ручную проверку
+- [x] **SHIFT-04**: Фото, отправленное за пределами допустимого окна, отправляется на ручную проверку
 
 ### Google Sheets Integration
 
@@ -101,15 +101,15 @@ Deferred to future release. Tracked but not in current roadmap.
 | TGRAM-03 | Phase 1 | Complete |
 | TGRAM-04 | Phase 1 | Pending |
 | TGRAM-05 | Phase 1 | Pending |
-| IDENT-01 | Phase 1 | Pending |
-| IDENT-02 | Phase 1 | Pending |
-| IDENT-03 | Phase 1 | Pending |
-| IDENT-04 | Phase 1 | Pending |
-| IDENT-05 | Phase 1 | Pending |
-| SHIFT-01 | Phase 1 | Pending |
-| SHIFT-02 | Phase 1 | Pending |
+| IDENT-01 | Phase 1 | Complete |
+| IDENT-02 | Phase 1 | Complete |
+| IDENT-03 | Phase 1 | Complete |
+| IDENT-04 | Phase 1 | Complete |
+| IDENT-05 | Phase 1 | Complete |
+| SHIFT-01 | Phase 1 | Complete |
+| SHIFT-02 | Phase 1 | Complete |
 | SHIFT-03 | Phase 1 | Complete |
-| SHIFT-04 | Phase 1 | Pending |
+| SHIFT-04 | Phase 1 | Complete |
 | JRNL-01 | Phase 1 | Complete |
 | JRNL-02 | Phase 1 | Complete |
 | JRNL-03 | Phase 1 | Complete |
