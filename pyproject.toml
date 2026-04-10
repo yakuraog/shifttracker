@@ -20,6 +20,7 @@ dev = [
     "pytest-asyncio>=0.23",
     "pytest-timeout>=0.5",
     "aiosqlite>=0.20",
+    "tzdata>=2024.1",
     "ruff",
 ]
 
