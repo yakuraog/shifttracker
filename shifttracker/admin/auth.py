@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Form, Request
+from pathlib import Path
+
+from fastapi import APIRouter, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
-from pathlib import Path
 
 from shifttracker.config import Settings
 
@@ -15,34 +16,14 @@ def require_session(request: Request) -> str:
     """FastAPI dependency: enforces admin session. Redirects to /admin/login if not authenticated."""
     user = request.session.get("user")
     if not user:
-        response = RedirectResponse("/admin/login", status_code=303)
-        raise _AuthRedirect(response)
-    return user
-
-
-class _AuthRedirect(Exception):
-    """Internal exception to carry a redirect response through the dependency system."""
-
-    def __init__(self, response: RedirectResponse):
-        self.response = response
-
-
-# Override require_session to use HTTPException approach compatible with FastAPI Depends
-from fastapi import HTTPException
-from starlette.responses import Response
-
-
-def require_session(request: Request) -> str:  # noqa: F811
-    """FastAPI dependency: enforces admin session. Redirects to /admin/login if not authenticated."""
-    user = request.session.get("user")
-    if not user:
         raise HTTPException(status_code=303, headers={"Location": "/admin/login"})
     return user
 
 
 @auth_router.get("/login")
 async def login_get(request: Request):
-    return _templates.TemplateResponse("login.html", {"request": request})
+    # Starlette 1.x: request is first arg, context is second
+    return _templates.TemplateResponse(request, "login.html")
 
 
 @auth_router.post("/login")
@@ -56,8 +37,9 @@ async def login_post(
         request.session["user"] = username
         return RedirectResponse("/admin/", status_code=303)
     return _templates.TemplateResponse(
+        request,
         "login.html",
-        {"request": request, "error": "Invalid credentials"},
+        {"error": "Invalid credentials"},
         status_code=200,
     )
 

@@ -53,7 +53,9 @@ async def dashboard(
         "errors_today": errors_today,
     }
 
+    # Starlette 1.x: request is first arg, context is second
     return templates.TemplateResponse(
+        request,
         "admin/dashboard.html",
-        {"request": request, "stats": stats},
+        {"stats": stats},
     )

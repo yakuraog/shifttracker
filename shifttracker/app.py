@@ -5,12 +5,14 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from fastapi import FastAPI
 from loguru import logger
+from starlette.middleware.sessions import SessionMiddleware
 
 from shifttracker.config import Settings
 from shifttracker.bot.router import router as photo_router
 from shifttracker.db.engine import engine, async_session_factory
 from shifttracker.pipeline.worker import start_workers, stop_workers
 from shifttracker.sheets.writer import SheetsWriter
+from shifttracker.admin.router import admin_router
 
 settings = Settings()
 
@@ -59,8 +61,13 @@ async def lifespan(app: FastAPI):
 def create_app() -> FastAPI:
     app = FastAPI(title="ShiftTracker", version="0.1.0", lifespan=lifespan)
 
+    # Session middleware must be added before routers
+    app.add_middleware(SessionMiddleware, secret_key=settings.secret_key)
+
     @app.get("/health")
     async def health():
         return {"status": "ok"}
+
+    app.include_router(admin_router, prefix="/admin")
 
     return app
