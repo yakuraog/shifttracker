@@ -11,7 +11,7 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 - [ ] **TGRAM-01**: Бот принимает фотографии с подписями из подключенных Telegram-групп в реальном времени
 - [ ] **TGRAM-02**: Бот фильтрует нерелевантные сообщения (без фото) и не обрабатывает их
-- [ ] **TGRAM-03**: Повторная обработка одного и того же сообщения не создает дублей (дедупликация по update_id)
+- [x] **TGRAM-03**: Повторная обработка одного и того же сообщения не создает дублей (дедупликация по update_id)
 - [ ] **TGRAM-04**: Бот корректно обрабатывает миграцию группы в супергруппу (migrate_to_chat_id)
 - [ ] **TGRAM-05**: При пиковых нагрузках сообщения ставятся в очередь без потери
 
@@ -27,7 +27,7 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 - [ ] **SHIFT-01**: Система определяет дату смены по фактическому времени публикации сообщения
 - [ ] **SHIFT-02**: Для ночных смен система корректно разрешает дату через настраиваемое окно (date_offset)
-- [ ] **SHIFT-03**: Временные окна подтверждения смены настраиваются отдельно для каждой группы/объекта
+- [x] **SHIFT-03**: Временные окна подтверждения смены настраиваются отдельно для каждой группы/объекта
 - [ ] **SHIFT-04**: Фото, отправленное за пределами допустимого окна, отправляется на ручную проверку
 
 ### Google Sheets Integration
@@ -40,10 +40,10 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 ### Processing Journal
 
-- [ ] **JRNL-01**: Каждое обработанное сообщение фиксируется в журнале со статусом (принято/отклонено/ручная проверка/ошибка)
-- [ ] **JRNL-02**: Для отклоненных сообщений сохраняется причина отклонения
-- [ ] **JRNL-03**: Оператор может открыть первоисточник (ссылка на сообщение в Telegram) для любой отметки
-- [ ] **JRNL-04**: Доступна история автоматических изменений по каждому сотруднику и каждой дате
+- [x] **JRNL-01**: Каждое обработанное сообщение фиксируется в журнале со статусом (принято/отклонено/ручная проверка/ошибка)
+- [x] **JRNL-02**: Для отклоненных сообщений сохраняется причина отклонения
+- [x] **JRNL-03**: Оператор может открыть первоисточник (ссылка на сообщение в Telegram) для любой отметки
+- [x] **JRNL-04**: Доступна история автоматических изменений по каждому сотруднику и каждой дате
 
 ### Manual Review
 
@@ -98,7 +98,7 @@ Deferred to future release. Tracked but not in current roadmap.
 |-------------|-------|--------|
 | TGRAM-01 | Phase 1 | Pending |
 | TGRAM-02 | Phase 1 | Pending |
-| TGRAM-03 | Phase 1 | Pending |
+| TGRAM-03 | Phase 1 | Complete |
 | TGRAM-04 | Phase 1 | Pending |
 | TGRAM-05 | Phase 1 | Pending |
 | IDENT-01 | Phase 1 | Pending |
@@ -108,12 +108,12 @@ Deferred to future release. Tracked but not in current roadmap.
 | IDENT-05 | Phase 1 | Pending |
 | SHIFT-01 | Phase 1 | Pending |
 | SHIFT-02 | Phase 1 | Pending |
-| SHIFT-03 | Phase 1 | Pending |
+| SHIFT-03 | Phase 1 | Complete |
 | SHIFT-04 | Phase 1 | Pending |
-| JRNL-01 | Phase 1 | Pending |
-| JRNL-02 | Phase 1 | Pending |
-| JRNL-03 | Phase 1 | Pending |
-| JRNL-04 | Phase 1 | Pending |
+| JRNL-01 | Phase 1 | Complete |
+| JRNL-02 | Phase 1 | Complete |
+| JRNL-03 | Phase 1 | Complete |
+| JRNL-04 | Phase 1 | Complete |
 | SHEET-01 | Phase 2 | Pending |
 | SHEET-02 | Phase 2 | Pending |
 | SHEET-03 | Phase 2 | Pending |

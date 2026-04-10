@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-04-10T16:49:42.604Z"
+stopped_at: Completed 01-foundation/01-01-PLAN.md
+last_updated: "2026-04-10T17:17:43.999Z"
 last_activity: 2026-04-10 — Roadmap created, 34 v1 requirements mapped to 3 phases
 progress:
   total_phases: 3
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 4
+  completed_plans: 1
   percent: 0
 ---
 
@@ -50,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-foundation P01 | 4 | 2 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -62,6 +63,8 @@ Recent decisions affecting current work:
 - Project init: PostgreSQL is source of truth; Google Sheets is display layer only
 - Project init: Bot API only (not MTProto); bots must be added to groups with message read rights
 - Project init: Inbox-pattern deduplication on update_id before all business logic
+- [Phase 01-foundation]: pydantic-settings for config (not python-dotenv) — reads .env natively via SettingsConfigDict
+- [Phase 01-foundation]: pytest-timeout added to dev deps — required for --timeout=10 flag in verify commands
 
 ### Pending Todos
 
@@ -74,6 +77,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T16:49:42.601Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-04-10T17:17:43.997Z
+Stopped at: Completed 01-foundation/01-01-PLAN.md
+Resume file: None
