@@ -49,8 +49,8 @@ Plans:
 **Plans:** 2/2 plans complete
 
 Plans:
-- [ ] 02-01-PLAN.md — Schema extensions, config, dependencies, sheets module (client, header cache, cell resolution)
-- [ ] 02-02-PLAN.md — SheetsWriter implementation, app.py wiring, comprehensive tests
+- [x] 02-01-PLAN.md — Schema extensions, config, dependencies, sheets module (client, header cache, cell resolution)
+- [x] 02-02-PLAN.md — SheetsWriter implementation, app.py wiring, comprehensive tests
 
 ### Phase 3: Admin Interface
 **Goal**: An operator can configure the system, process the manual review queue, and view the shift attendance table through a web interface — completing the full end-to-end workflow
@@ -61,7 +61,13 @@ Plans:
   2. An operator can see all NEEDS_REVIEW items in a queue, open the source Telegram message, then approve or reject each item with a reason — approved items produce a "1" in Sheets, rejected items are logged with a comment
   3. A supervisor can view the current shift attendance table and history of automated changes per employee per date
   4. Authenticated access to all admin endpoints is enforced — unauthenticated requests are rejected
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Foundation: config, auth, base templates, dashboard, test infrastructure
+- [ ] 03-02-PLAN.md — Admin CRUD: Groups, Employees, Caption Rules, Group-Employee bindings
+- [ ] 03-03-PLAN.md — Review Queue: list, approve, reject with SheetsWriter integration
+- [ ] 03-04-PLAN.md — Shift Table grid view, smoke tests, visual verification
 
 ## Progress
 
@@ -72,4 +78,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete   | 2026-04-10 |
 | 2. Google Sheets Integration | 2/2 | Complete   | 2026-04-10 |
-| 3. Admin Interface | 0/TBD | Not started | - |
+| 3. Admin Interface | 0/4 | In Progress | - |
