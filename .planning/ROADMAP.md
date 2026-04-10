@@ -28,7 +28,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Sending the same Telegram message twice does not create a second log entry or shift record
   4. A photo with an unrecognizable sender produces a NEEDS_REVIEW log entry, not a silent drop
   5. The audit log shows the status and rejection reason for every processed message — accepted, skipped, pending review, or error
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold, DB models, config, Alembic migration, test infrastructure
+- [ ] 01-02-PLAN.md — Employee identification (confidence ladder) and shift date resolution
+- [ ] 01-03-PLAN.md — Bot handlers, message validation, queue, and update deduplication
+- [ ] 01-04-PLAN.md — Pipeline worker wiring, FastAPI app factory, end-to-end tests
 
 ### Phase 2: Google Sheets Integration
 **Goal**: Every confirmed shift attendance mark is written as "1" into the correct Google Sheets cell, with resilience against quota limits and transient failures
@@ -60,6 +66,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/4 | Planning complete | - |
 | 2. Google Sheets Integration | 0/TBD | Not started | - |
 | 3. Admin Interface | 0/TBD | Not started | - |

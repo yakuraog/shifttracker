@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.google.com)",
+      "Skill(gsd:new-milestone)",
+      "Skill(gsd:new-milestone:*)",
+      "WebSearch",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:docs.aiogram.dev)",
+      "WebFetch(domain:developers.google.com)",
+      "WebFetch(domain:dutytick.com)",
+      "WebFetch(domain:www.filmetrics.com.ph)"
+    ]
+  }
+}
