@@ -5,6 +5,8 @@ from fastapi.templating import Jinja2Templates
 
 from shifttracker.admin.auth import auth_router, require_session
 from shifttracker.admin.routers import dashboard
+from shifttracker.admin.routers import groups as groups_router
+from shifttracker.admin.routers import employees as employees_router
 from shifttracker.admin.routers import review
 
 # Absolute path resolution to avoid CWD-relative template loading issues
@@ -18,6 +20,18 @@ admin_router.include_router(auth_router)
 # Dashboard: /admin/ (requires session)
 admin_router.include_router(
     dashboard.router,
+    dependencies=[Depends(require_session)],
+)
+
+# Groups CRUD: /admin/groups/
+admin_router.include_router(
+    groups_router.router,
+    dependencies=[Depends(require_session)],
+)
+
+# Employees CRUD + bindings: /admin/employees/
+admin_router.include_router(
+    employees_router.router,
     dependencies=[Depends(require_session)],
 )
 
