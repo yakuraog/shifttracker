@@ -47,10 +47,10 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 ### Manual Review
 
-- [ ] **REVIEW-01**: Спорные случаи отображаются в очереди ручной проверки для оператора
-- [ ] **REVIEW-02**: Оператор может подтвердить или отклонить отметку из очереди
-- [ ] **REVIEW-03**: После подтверждения оператором система ставит "1" в таблицу смен
-- [ ] **REVIEW-04**: После отклонения оператором запись помечается как отклоненная с комментарием
+- [x] **REVIEW-01**: Спорные случаи отображаются в очереди ручной проверки для оператора
+- [x] **REVIEW-02**: Оператор может подтвердить или отклонить отметку из очереди
+- [x] **REVIEW-03**: После подтверждения оператором система ставит "1" в таблицу смен
+- [x] **REVIEW-04**: После отклонения оператором запись помечается как отклоненная с комментарием
 
 ### Administration
 
@@ -119,10 +119,10 @@ Deferred to future release. Tracked but not in current roadmap.
 | SHEET-03 | Phase 2 | Complete |
 | SHEET-04 | Phase 2 | Complete |
 | SHEET-05 | Phase 2 | Complete |
-| REVIEW-01 | Phase 3 | Pending |
-| REVIEW-02 | Phase 3 | Pending |
-| REVIEW-03 | Phase 3 | Pending |
-| REVIEW-04 | Phase 3 | Pending |
+| REVIEW-01 | Phase 3 | Complete |
+| REVIEW-02 | Phase 3 | Complete |
+| REVIEW-03 | Phase 3 | Complete |
+| REVIEW-04 | Phase 3 | Complete |
 | ADMIN-01 | Phase 3 | Pending |
 | ADMIN-02 | Phase 3 | Pending |
 | ADMIN-03 | Phase 3 | Pending |
