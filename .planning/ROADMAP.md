@@ -31,10 +31,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 4/4 plans complete
 
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffold, DB models, config, Alembic migration, test infrastructure
-- [ ] 01-02-PLAN.md — Employee identification (confidence ladder) and shift date resolution
-- [ ] 01-03-PLAN.md — Bot handlers, message validation, queue, and update deduplication
-- [ ] 01-04-PLAN.md — Pipeline worker wiring, FastAPI app factory, end-to-end tests
+- [x] 01-01-PLAN.md — Project scaffold, DB models, config, Alembic migration, test infrastructure
+- [x] 01-02-PLAN.md — Employee identification (confidence ladder) and shift date resolution
+- [x] 01-03-PLAN.md — Bot handlers, message validation, queue, and update deduplication
+- [x] 01-04-PLAN.md — Pipeline worker wiring, FastAPI app factory, end-to-end tests
 
 ### Phase 2: Google Sheets Integration
 **Goal**: Every confirmed shift attendance mark is written as "1" into the correct Google Sheets cell, with resilience against quota limits and transient failures
@@ -46,7 +46,11 @@ Plans:
   3. Sending a second photo for the same employee on the same date does not overwrite or duplicate the existing "1" — the duplicate attempt is logged
   4. During a burst of 70+ write operations within 60 seconds, all marks eventually appear in Sheets without data loss
   5. If Sheets is temporarily unreachable, marks remain in SHEET_WRITE_PENDING state and are retried automatically until they succeed
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Schema extensions, config, dependencies, sheets module (client, header cache, cell resolution)
+- [ ] 02-02-PLAN.md — SheetsWriter implementation, app.py wiring, comprehensive tests
 
 ### Phase 3: Admin Interface
 **Goal**: An operator can configure the system, process the manual review queue, and view the shift attendance table through a web interface — completing the full end-to-end workflow
@@ -67,5 +71,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete   | 2026-04-10 |
-| 2. Google Sheets Integration | 0/TBD | Not started | - |
+| 2. Google Sheets Integration | 0/2 | Planning complete | - |
 | 3. Admin Interface | 0/TBD | Not started | - |
