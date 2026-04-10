@@ -119,7 +119,7 @@ class TestFullPipeline:
             async_session, name="Bob", telegram_user_id=222
         )
 
-        # 02:00 UTC — outside 06-22 day shift (not within ±2h tolerance either)
+        # 02:00 UTC with UTC timezone — outside 06-22 day shift (2h < 06, beyond ±2h tolerance)
         outside_dt = datetime(2026, 4, 10, 2, 0, 0, tzinfo=timezone.utc)
         ctx = _make_ctx(
             update_id=2003,
@@ -127,6 +127,8 @@ class TestFullPipeline:
             group_id=group.id,
             message_datetime=outside_dt,
         )
+        # Override group_timezone to UTC so local hour=2, which is outside 06-22 ± 2h tolerance
+        ctx.group_timezone = "UTC"
 
         await process_message(ctx, async_session)
 
