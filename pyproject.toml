@@ -12,6 +12,8 @@ dependencies = [
     "alembic==1.18.4",
     "pydantic-settings>=2.0",
     "loguru>=0.7",
+    "gspread==6.2.1",
+    "google-auth>=2.0",
 ]
 
 [project.optional-dependencies]

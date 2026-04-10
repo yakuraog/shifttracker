@@ -10,3 +10,6 @@ class Settings(BaseSettings):
     queue_max_size: int = 500
     worker_count: int = 8
     log_level: str = "INFO"
+    google_sheets_credentials_file: str = ""  # empty string = Sheets writer disabled
+    sheets_flush_interval: int = 5  # seconds between flush cycles
+    sheets_max_retries: int = 5  # retry_count threshold before ERROR

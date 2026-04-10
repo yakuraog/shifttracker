@@ -30,6 +30,8 @@ class TelegramGroup(Base):
     shift_end_hour: Mapped[int] = mapped_column(Integer, default=22)
     timezone: Mapped[str] = mapped_column(String(50), default="Europe/Moscow")
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    sheet_id: Mapped[Optional[str]] = mapped_column(String(200), nullable=True)
+    sheet_name: Mapped[Optional[str]] = mapped_column(String(200), nullable=True, default="Sheet1")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
@@ -63,6 +65,8 @@ class ShiftRecord(Base):
     source_message_id: Mapped[int] = mapped_column(BigInteger)
     source_link: Mapped[str] = mapped_column(String(500))
     sheet_write_status: Mapped[str] = mapped_column(String(20), default="NOT_NEEDED")  # PENDING, WRITTEN, ERROR, NOT_NEEDED
+    written_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    retry_count: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
