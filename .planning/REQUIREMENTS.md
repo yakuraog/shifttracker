@@ -96,13 +96,46 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated during roadmap creation) | | |
+| TGRAM-01 | Phase 1 | Pending |
+| TGRAM-02 | Phase 1 | Pending |
+| TGRAM-03 | Phase 1 | Pending |
+| TGRAM-04 | Phase 1 | Pending |
+| TGRAM-05 | Phase 1 | Pending |
+| IDENT-01 | Phase 1 | Pending |
+| IDENT-02 | Phase 1 | Pending |
+| IDENT-03 | Phase 1 | Pending |
+| IDENT-04 | Phase 1 | Pending |
+| IDENT-05 | Phase 1 | Pending |
+| SHIFT-01 | Phase 1 | Pending |
+| SHIFT-02 | Phase 1 | Pending |
+| SHIFT-03 | Phase 1 | Pending |
+| SHIFT-04 | Phase 1 | Pending |
+| JRNL-01 | Phase 1 | Pending |
+| JRNL-02 | Phase 1 | Pending |
+| JRNL-03 | Phase 1 | Pending |
+| JRNL-04 | Phase 1 | Pending |
+| SHEET-01 | Phase 2 | Pending |
+| SHEET-02 | Phase 2 | Pending |
+| SHEET-03 | Phase 2 | Pending |
+| SHEET-04 | Phase 2 | Pending |
+| SHEET-05 | Phase 2 | Pending |
+| REVIEW-01 | Phase 3 | Pending |
+| REVIEW-02 | Phase 3 | Pending |
+| REVIEW-03 | Phase 3 | Pending |
+| REVIEW-04 | Phase 3 | Pending |
+| ADMIN-01 | Phase 3 | Pending |
+| ADMIN-02 | Phase 3 | Pending |
+| ADMIN-03 | Phase 3 | Pending |
+| ADMIN-04 | Phase 3 | Pending |
+| ADMIN-05 | Phase 3 | Pending |
+| ADMIN-06 | Phase 3 | Pending |
+| ADMIN-07 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 30 total
-- Mapped to phases: 0
-- Unmapped: 30
+- v1 requirements: 34 total
+- Mapped to phases: 34
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-10*
-*Last updated: 2026-04-10 after initial definition*
+*Last updated: 2026-04-10 after roadmap creation*
