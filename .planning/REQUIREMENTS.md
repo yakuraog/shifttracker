@@ -32,11 +32,11 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 ### Google Sheets Integration
 
-- [ ] **SHEET-01**: Система автоматически ставит "1" в ячейку (строка сотрудника + столбец даты) в Google Sheets
+- [x] **SHEET-01**: Система автоматически ставит "1" в ячейку (строка сотрудника + столбец даты) в Google Sheets
 - [ ] **SHEET-02**: Система сохраняет ссылку на исходное сообщение как основание отметки
 - [ ] **SHEET-03**: Повторная отметка по тому же сотруднику за ту же дату не создает дубль, а логируется в журнал
-- [ ] **SHEET-04**: Записи буферизуются и отправляются батчами для соблюдения лимитов API (60 req/min)
-- [ ] **SHEET-05**: При ошибке записи в Sheets запись сохраняется в БД со статусом PENDING и повторяется
+- [x] **SHEET-04**: Записи буферизуются и отправляются батчами для соблюдения лимитов API (60 req/min)
+- [x] **SHEET-05**: При ошибке записи в Sheets запись сохраняется в БД со статусом PENDING и повторяется
 
 ### Processing Journal
 
@@ -114,11 +114,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | JRNL-02 | Phase 1 | Complete |
 | JRNL-03 | Phase 1 | Complete |
 | JRNL-04 | Phase 1 | Complete |
-| SHEET-01 | Phase 2 | Pending |
+| SHEET-01 | Phase 2 | Complete |
 | SHEET-02 | Phase 2 | Pending |
 | SHEET-03 | Phase 2 | Pending |
-| SHEET-04 | Phase 2 | Pending |
-| SHEET-05 | Phase 2 | Pending |
+| SHEET-04 | Phase 2 | Complete |
+| SHEET-05 | Phase 2 | Complete |
 | REVIEW-01 | Phase 3 | Pending |
 | REVIEW-02 | Phase 3 | Pending |
 | REVIEW-03 | Phase 3 | Pending |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-foundation/01-04-PLAN.md
-last_updated: "2026-04-10T17:33:27.966Z"
+stopped_at: Completed 02-google-sheets-integration/02-01-PLAN.md
+last_updated: "2026-04-10T17:55:07.994Z"
 last_activity: 2026-04-10 — Roadmap created, 34 v1 requirements mapped to 3 phases
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 6
+  completed_plans: 5
   percent: 0
 ---
 
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P02 | 3 | 2 tasks | 8 files |
 | Phase 01-foundation P03 | 3 | 2 tasks | 8 files |
 | Phase 01-foundation P04 | 3 | 2 tasks | 4 files |
+| Phase 02-google-sheets-integration P01 | 3 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,9 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: IntegrityError catch for dedup — compatible with SQLite in tests and PostgreSQL in prod
 - [Phase 01-foundation]: Bot runs in long-polling mode (dev mode) via asyncio.create_task — not SimpleRequestHandler webhook — for Phase 1
 - [Phase 01-foundation]: process_message commits after each individual employee outcome — avoids partial-batch failure rollback issues
+- [Phase 02-google-sheets-integration]: header_cache uses time.monotonic() not datetime.utcnow() — monotonic clock immune to system clock changes
+- [Phase 02-google-sheets-integration]: resolve_cell tries 4 date formats (DD.MM, D.M, DD.MM.YYYY, D.M.YYYY) — guards against unknown client spreadsheet header format
+- [Phase 02-google-sheets-integration]: google_sheets_credentials_file defaults to empty string — empty means Sheets writer disabled, avoids startup failure when unconfigured
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T17:29:16.829Z
-Stopped at: Completed 01-foundation/01-04-PLAN.md
+Last session: 2026-04-10T17:55:07.991Z
+Stopped at: Completed 02-google-sheets-integration/02-01-PLAN.md
 Resume file: None
