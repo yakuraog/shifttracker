@@ -7,6 +7,7 @@ from shifttracker.admin.auth import auth_router, require_session
 from shifttracker.admin.routers import dashboard
 from shifttracker.admin.routers import groups as groups_router
 from shifttracker.admin.routers import employees as employees_router
+from shifttracker.admin.routers import caption_rules as caption_rules_router
 from shifttracker.admin.routers import review
 
 # Absolute path resolution to avoid CWD-relative template loading issues
@@ -32,6 +33,12 @@ admin_router.include_router(
 # Employees CRUD + bindings: /admin/employees/
 admin_router.include_router(
     employees_router.router,
+    dependencies=[Depends(require_session)],
+)
+
+# Caption Rules CRUD: /admin/caption-rules/
+admin_router.include_router(
+    caption_rules_router.router,
     dependencies=[Depends(require_session)],
 )
 
