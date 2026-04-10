@@ -201,7 +201,7 @@ def test_shift_grid_requires_group(test_client):
     login(test_client)
     resp = test_client.get("/admin/shifts/", follow_redirects=True)
     assert resp.status_code == 200
-    assert "Select a group" in resp.text
+    assert "Выберите группу" in resp.text
 
 
 def test_shift_grid_employee_rows_and_date_columns(test_client):

@@ -39,7 +39,7 @@ async def login_post(
     return _templates.TemplateResponse(
         request,
         "login.html",
-        {"error": "Invalid credentials"},
+        {"error": "Неверный логин или пароль"},
         status_code=200,
     )
 

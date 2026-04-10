@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}ShiftTracker Admin{% endblock %}</title>
+    <title>{% block title %}ShiftTracker — Панель управления{% endblock %}</title>
     <!-- Bootstrap 5.3.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -38,52 +38,52 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <!-- Sidebar -->
+        <!-- Боковая панель -->
         <nav class="col-md-2 d-md-block sidebar py-3 px-2">
             <div class="mb-4 px-2 sidebar-brand">ShiftTracker</div>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/">
-                        Dashboard
+                        Главная
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/groups/">
-                        Groups
+                        Группы
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/employees/">
-                        Employees
+                        Сотрудники
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/caption-rules/">
-                        Caption Rules
+                        Правила подписей
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/review/">
-                        Review Queue
+                        Очередь проверки
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/shifts/">
-                        Shift Table
+                        Таблица смен
                     </a>
                 </li>
             </ul>
-            <!-- Logout button at bottom of sidebar -->
+            <!-- Кнопка выхода -->
             <div class="mt-auto pt-4 px-2">
                 <form method="post" action="/admin/logout">
                     <button type="submit" class="btn btn-outline-secondary btn-sm w-100">
-                        Logout
+                        Выйти
                     </button>
                 </form>
             </div>
         </nav>
 
-        <!-- Main content -->
+        <!-- Основное содержимое -->
         <main class="col-md-10 ms-sm-auto px-md-4 py-4">
             {% block content %}{% endblock %}
         </main>

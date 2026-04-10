@@ -1,18 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Employees — ShiftTracker Admin{% endblock %}
+{% block title %}Сотрудники — ShiftTracker{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Employees</h2>
-    <a href="/admin/employees/add" class="btn btn-primary">Add Employee</a>
+    <h2>Сотрудники</h2>
+    <a href="/admin/employees/add" class="btn btn-primary">Добавить сотрудника</a>
 </div>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>Name</th>
+            <th>ФИО</th>
             <th>Telegram User ID</th>
-            <th>Employee Code</th>
-            <th>Actions</th>
+            <th>Табельный номер</th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -22,19 +22,19 @@
             <td>{{ employee.telegram_user_id or '—' }}</td>
             <td>{{ employee.employee_code or '—' }}</td>
             <td>
-                <a href="/admin/employees/{{ employee.id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="/admin/employees/{{ employee.id }}/edit" class="btn btn-sm btn-outline-secondary">Изменить</a>
                 <button class="btn btn-sm btn-outline-danger"
                         hx-delete="/admin/employees/{{ employee.id }}"
                         hx-target="closest tr"
                         hx-swap="outerHTML"
-                        hx-confirm="Delete employee '{{ employee.name }}'?">
-                    Delete
+                        hx-confirm="Удалить сотрудника '{{ employee.name }}'?">
+                    Удалить
                 </button>
             </td>
         </tr>
         {% else %}
         <tr>
-            <td colspan="4" class="text-center text-muted">No employees yet.</td>
+            <td colspan="4" class="text-center text-muted">Сотрудники ещё не добавлены.</td>
         </tr>
         {% endfor %}
     </tbody>

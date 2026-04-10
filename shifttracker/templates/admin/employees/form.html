@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{% if employee %}Edit Employee{% else %}Add Employee{% endif %} — ShiftTracker Admin{% endblock %}
+{% block title %}{% if employee %}Редактирование сотрудника{% else %}Новый сотрудник{% endif %} — ShiftTracker{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>{% if employee %}Edit Employee: {{ employee.name }}{% else %}Add Employee{% endif %}</h2>
-    <a href="/admin/employees/" class="btn btn-outline-secondary">Back to List</a>
+    <h2>{% if employee %}Редактирование: {{ employee.name }}{% else %}Новый сотрудник{% endif %}</h2>
+    <a href="/admin/employees/" class="btn btn-outline-secondary">Назад к списку</a>
 </div>
 
 <div class="card mb-4" style="max-width: 600px;">
@@ -11,22 +11,22 @@
         <form method="post"
               action="{% if employee %}/admin/employees/{{ employee.id }}/edit{% else %}/admin/employees/add{% endif %}">
             <div class="mb-3">
-                <label class="form-label" for="name">Name</label>
+                <label class="form-label" for="name">ФИО</label>
                 <input type="text" class="form-control" id="name" name="name"
                        value="{{ employee.name if employee else '' }}" required>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="telegram_user_id">Telegram User ID (optional)</label>
+                <label class="form-label" for="telegram_user_id">Telegram User ID (необязательно)</label>
                 <input type="number" class="form-control" id="telegram_user_id" name="telegram_user_id"
                        value="{{ employee.telegram_user_id if employee and employee.telegram_user_id else '' }}">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="employee_code">Employee Code (optional)</label>
+                <label class="form-label" for="employee_code">Табельный номер (необязательно)</label>
                 <input type="text" class="form-control" id="employee_code" name="employee_code"
                        value="{{ employee.employee_code if employee and employee.employee_code else '' }}">
             </div>
             <button type="submit" class="btn btn-primary">
-                {% if employee %}Save Changes{% else %}Create Employee{% endif %}
+                {% if employee %}Сохранить изменения{% else %}Создать сотрудника{% endif %}
             </button>
         </form>
     </div>
@@ -35,15 +35,15 @@
 {% if employee %}
 <div class="card" style="max-width: 600px;">
     <div class="card-header">
-        <h5 class="mb-0">Group Bindings</h5>
+        <h5 class="mb-0">Привязка к группам</h5>
     </div>
     <div class="card-body">
         <table class="table table-sm mb-3">
             <thead>
                 <tr>
-                    <th>Group</th>
-                    <th>Sheet Row</th>
-                    <th>Actions</th>
+                    <th>Группа</th>
+                    <th>Строка в таблице</th>
+                    <th>Действия</th>
                 </tr>
             </thead>
             <tbody id="bindings-table">
@@ -55,26 +55,26 @@
         <form method="post" action="/admin/employees/{{ employee.id }}/bindings/add">
             <div class="row g-2 align-items-end">
                 <div class="col">
-                    <label class="form-label" for="group_id">Add to Group</label>
+                    <label class="form-label" for="group_id">Добавить в группу</label>
                     <select class="form-select" id="group_id" name="group_id" required>
-                        <option value="">Select a group…</option>
+                        <option value="">Выберите группу…</option>
                         {% for grp in all_groups %}
                         <option value="{{ grp.id }}">{{ grp.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="col-auto">
-                    <label class="form-label" for="sheet_row">Sheet Row</label>
+                    <label class="form-label" for="sheet_row">Строка</label>
                     <input type="number" class="form-control" id="sheet_row" name="sheet_row"
-                           placeholder="optional" style="width: 110px;">
+                           placeholder="необяз." style="width: 110px;">
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-success">Add Binding</button>
+                    <button type="submit" class="btn btn-success">Привязать</button>
                 </div>
             </div>
         </form>
         {% else %}
-        <p class="text-muted">No groups available. <a href="/admin/groups/add">Create a group</a> first.</p>
+        <p class="text-muted">Нет доступных групп. <a href="/admin/groups/add">Создайте группу</a> сначала.</p>
         {% endif %}
     </div>
 </div>

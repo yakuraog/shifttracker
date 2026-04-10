@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{% if group %}Edit Group{% else %}Add Group{% endif %} — ShiftTracker Admin{% endblock %}
+{% block title %}{% if group %}Редактирование группы{% else %}Новая группа{% endif %} — ShiftTracker{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>{% if group %}Edit Group: {{ group.name }}{% else %}Add Group{% endif %}</h2>
-    <a href="/admin/groups/" class="btn btn-outline-secondary">Back to List</a>
+    <h2>{% if group %}Редактирование: {{ group.name }}{% else %}Новая группа{% endif %}</h2>
+    <a href="/admin/groups/" class="btn btn-outline-secondary">Назад к списку</a>
 </div>
 
 <div class="card" style="max-width: 600px;">
@@ -11,7 +11,7 @@
         <form method="post"
               action="{% if group %}/admin/groups/{{ group.id }}/edit{% else %}/admin/groups/add{% endif %}">
             <div class="mb-3">
-                <label class="form-label" for="name">Name</label>
+                <label class="form-label" for="name">Название</label>
                 <input type="text" class="form-control" id="name" name="name"
                        value="{{ group.name if group else '' }}" required>
             </div>
@@ -21,36 +21,36 @@
                        value="{{ group.chat_id if group else '' }}" required>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="sheet_id">Sheet ID (optional)</label>
+                <label class="form-label" for="sheet_id">ID таблицы Google Sheets (необязательно)</label>
                 <input type="text" class="form-control" id="sheet_id" name="sheet_id"
                        value="{{ group.sheet_id if group and group.sheet_id else '' }}">
             </div>
             <div class="mb-3">
-                <label class="form-label" for="sheet_name">Sheet Name</label>
+                <label class="form-label" for="sheet_name">Имя листа</label>
                 <input type="text" class="form-control" id="sheet_name" name="sheet_name"
                        value="{{ group.sheet_name if group and group.sheet_name else 'Sheet1' }}">
             </div>
             <div class="row">
                 <div class="col mb-3">
-                    <label class="form-label" for="shift_start_hour">Shift Start Hour (0–23)</label>
+                    <label class="form-label" for="shift_start_hour">Начало смены (0–23)</label>
                     <input type="number" class="form-control" id="shift_start_hour" name="shift_start_hour"
                            min="0" max="23"
                            value="{{ group.shift_start_hour if group else 6 }}" required>
                 </div>
                 <div class="col mb-3">
-                    <label class="form-label" for="shift_end_hour">Shift End Hour (0–23)</label>
+                    <label class="form-label" for="shift_end_hour">Конец смены (0–23)</label>
                     <input type="number" class="form-control" id="shift_end_hour" name="shift_end_hour"
                            min="0" max="23"
                            value="{{ group.shift_end_hour if group else 22 }}" required>
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="timezone">Timezone</label>
+                <label class="form-label" for="timezone">Часовой пояс</label>
                 <input type="text" class="form-control" id="timezone" name="timezone"
                        value="{{ group.timezone if group else 'Europe/Moscow' }}" required>
             </div>
             <button type="submit" class="btn btn-primary">
-                {% if group %}Save Changes{% else %}Create Group{% endif %}
+                {% if group %}Сохранить изменения{% else %}Создать группу{% endif %}
             </button>
         </form>
     </div>

@@ -5,64 +5,64 @@
     <td><small>{{ item.log.reason or "-" }}</small></td>
     <td>
         {% if item.log.source_link %}
-        <a href="{{ item.log.source_link }}" target="_blank" rel="noopener noreferrer">View</a>
+        <a href="{{ item.log.source_link }}" target="_blank" rel="noopener noreferrer">Открыть</a>
         {% else %}
         -
         {% endif %}
     </td>
     <td>
-        <!-- Approve accordion trigger -->
+        <!-- Кнопка подтверждения -->
         <button class="btn btn-sm btn-success me-1"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#approve-{{ item.log.id }}"
                 aria-expanded="false">
-            Approve
+            Принять
         </button>
-        <!-- Reject accordion trigger -->
+        <!-- Кнопка отклонения -->
         <button class="btn btn-sm btn-danger"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#reject-{{ item.log.id }}"
                 aria-expanded="false">
-            Reject
+            Отклонить
         </button>
 
-        <!-- Approve form (collapse) -->
+        <!-- Форма подтверждения -->
         <div class="collapse mt-2" id="approve-{{ item.log.id }}">
             <form hx-post="/admin/review/{{ item.log.id }}/approve"
                   hx-target="#review-row-{{ item.log.id }}"
                   hx-swap="outerHTML"
                   class="border rounded p-2 bg-light">
                 <div class="mb-2">
-                    <label class="form-label small mb-1">Employee</label>
+                    <label class="form-label small mb-1">Сотрудник</label>
                     <select name="employee_id" class="form-select form-select-sm" required>
-                        <option value="">Select employee…</option>
+                        <option value="">Выберите сотрудника…</option>
                         {% for emp in employees %}
                         <option value="{{ emp.id }}">{{ emp.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="mb-2">
-                    <label class="form-label small mb-1">Shift Date</label>
+                    <label class="form-label small mb-1">Дата смены</label>
                     <input type="date" name="shift_date" class="form-control form-control-sm" required>
                 </div>
-                <button type="submit" class="btn btn-success btn-sm">Confirm Approve</button>
+                <button type="submit" class="btn btn-success btn-sm">Подтвердить</button>
             </form>
         </div>
 
-        <!-- Reject form (collapse) -->
+        <!-- Форма отклонения -->
         <div class="collapse mt-2" id="reject-{{ item.log.id }}">
             <form hx-post="/admin/review/{{ item.log.id }}/reject"
                   hx-target="#review-row-{{ item.log.id }}"
                   hx-swap="outerHTML"
                   class="border rounded p-2 bg-light">
                 <div class="mb-2">
-                    <label class="form-label small mb-1">Comment</label>
+                    <label class="form-label small mb-1">Комментарий</label>
                     <textarea name="comment" class="form-control form-control-sm" rows="2" required
-                              placeholder="Reason for rejection…"></textarea>
+                              placeholder="Причина отклонения…"></textarea>
                 </div>
-                <button type="submit" class="btn btn-danger btn-sm">Confirm Reject</button>
+                <button type="submit" class="btn btn-danger btn-sm">Отклонить</button>
             </form>
         </div>
     </td>

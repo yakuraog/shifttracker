@@ -1,18 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Caption Rules — ShiftTracker Admin{% endblock %}
+{% block title %}Правила подписей — ShiftTracker{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Caption Rules</h2>
-    <a href="/admin/caption-rules/add" class="btn btn-primary">Add Rule</a>
+    <h2>Правила подписей</h2>
+    <a href="/admin/caption-rules/add" class="btn btn-primary">Добавить правило</a>
 </div>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>Group</th>
-            <th>Employee</th>
-            <th>Pattern</th>
-            <th>Actions</th>
+            <th>Группа</th>
+            <th>Сотрудник</th>
+            <th>Шаблон</th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -22,19 +22,19 @@
             <td>{{ rule.employee.name if rule.employee else '—' }}</td>
             <td><code>{{ rule.pattern }}</code></td>
             <td>
-                <a href="/admin/caption-rules/{{ rule.id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="/admin/caption-rules/{{ rule.id }}/edit" class="btn btn-sm btn-outline-secondary">Изменить</a>
                 <button class="btn btn-sm btn-outline-danger"
                         hx-delete="/admin/caption-rules/{{ rule.id }}"
                         hx-target="closest tr"
                         hx-swap="outerHTML"
-                        hx-confirm="Delete this caption rule?">
-                    Delete
+                        hx-confirm="Удалить это правило?">
+                    Удалить
                 </button>
             </td>
         </tr>
         {% else %}
         <tr>
-            <td colspan="4" class="text-center text-muted">No caption rules yet.</td>
+            <td colspan="4" class="text-center text-muted">Правила ещё не добавлены.</td>
         </tr>
         {% endfor %}
     </tbody>

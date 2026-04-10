@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{% if rule %}Edit Caption Rule{% else %}Add Caption Rule{% endif %} — ShiftTracker Admin{% endblock %}
+{% block title %}{% if rule %}Редактирование правила{% else %}Новое правило{% endif %} — ShiftTracker{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>{% if rule %}Edit Caption Rule{% else %}Add Caption Rule{% endif %}</h2>
-    <a href="/admin/caption-rules/" class="btn btn-outline-secondary">Back to List</a>
+    <h2>{% if rule %}Редактирование правила{% else %}Новое правило подписи{% endif %}</h2>
+    <a href="/admin/caption-rules/" class="btn btn-outline-secondary">Назад к списку</a>
 </div>
 
 <div class="card" style="max-width: 600px;">
@@ -11,9 +11,9 @@
         <form method="post"
               action="{% if rule %}/admin/caption-rules/{{ rule.id }}/edit{% else %}/admin/caption-rules/add{% endif %}">
             <div class="mb-3">
-                <label class="form-label" for="group_id">Group</label>
+                <label class="form-label" for="group_id">Группа</label>
                 <select class="form-select" id="group_id" name="group_id" required>
-                    <option value="">Select a group…</option>
+                    <option value="">Выберите группу…</option>
                     {% for grp in all_groups %}
                     <option value="{{ grp.id }}"
                             {% if rule and rule.group_id == grp.id %}selected{% endif %}>
@@ -23,9 +23,9 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="employee_id">Employee</label>
+                <label class="form-label" for="employee_id">Сотрудник</label>
                 <select class="form-select" id="employee_id" name="employee_id" required>
-                    <option value="">Select an employee…</option>
+                    <option value="">Выберите сотрудника…</option>
                     {% for emp in all_employees %}
                     <option value="{{ emp.id }}"
                             {% if rule and rule.employee_id == emp.id %}selected{% endif %}>
@@ -35,14 +35,14 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="pattern">Pattern (regex)</label>
+                <label class="form-label" for="pattern">Шаблон (подстрока или regex)</label>
                 <input type="text" class="form-control" id="pattern" name="pattern"
                        value="{{ rule.pattern if rule else '' }}" required
-                       placeholder="e.g. john.*doe">
-                <div class="form-text">Regular expression matched against the message caption.</div>
+                       placeholder="например: иванов">
+                <div class="form-text">Регулярное выражение для поиска в подписи к сообщению.</div>
             </div>
             <button type="submit" class="btn btn-primary">
-                {% if rule %}Save Changes{% else %}Create Rule{% endif %}
+                {% if rule %}Сохранить изменения{% else %}Создать правило{% endif %}
             </button>
         </form>
     </div>

@@ -7,13 +7,13 @@
                 hx-delete="/admin/employees/{{ employee.id }}/bindings/{{ binding.id }}"
                 hx-target="closest tr"
                 hx-swap="outerHTML"
-                hx-confirm="Remove this binding?">
-            Remove
+                hx-confirm="Убрать эту привязку?">
+            Убрать
         </button>
     </td>
 </tr>
 {% else %}
 <tr id="no-bindings-row">
-    <td colspan="3" class="text-center text-muted">No bindings yet.</td>
+    <td colspan="3" class="text-center text-muted">Привязок пока нет.</td>
 </tr>
 {% endfor %}

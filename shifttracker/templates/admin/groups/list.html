@@ -1,20 +1,20 @@
 {% extends "base.html" %}
-{% block title %}Groups — ShiftTracker Admin{% endblock %}
+{% block title %}Группы — ShiftTracker{% endblock %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Telegram Groups</h2>
-    <a href="/admin/groups/add" class="btn btn-primary">Add Group</a>
+    <h2>Telegram-группы</h2>
+    <a href="/admin/groups/add" class="btn btn-primary">Добавить группу</a>
 </div>
 
 <table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr>
-            <th>Name</th>
+            <th>Название</th>
             <th>Chat ID</th>
-            <th>Sheet ID</th>
-            <th>Shift Window</th>
-            <th>Timezone</th>
-            <th>Actions</th>
+            <th>ID таблицы</th>
+            <th>Окно смены</th>
+            <th>Часовой пояс</th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -26,19 +26,19 @@
             <td>{{ group.shift_start_hour }}:00 – {{ group.shift_end_hour }}:00</td>
             <td>{{ group.timezone }}</td>
             <td>
-                <a href="/admin/groups/{{ group.id }}/edit" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="/admin/groups/{{ group.id }}/edit" class="btn btn-sm btn-outline-secondary">Изменить</a>
                 <button class="btn btn-sm btn-outline-danger"
                         hx-delete="/admin/groups/{{ group.id }}"
                         hx-target="closest tr"
                         hx-swap="outerHTML"
-                        hx-confirm="Delete group '{{ group.name }}'?">
-                    Delete
+                        hx-confirm="Удалить группу '{{ group.name }}'?">
+                    Удалить
                 </button>
             </td>
         </tr>
         {% else %}
         <tr>
-            <td colspan="6" class="text-center text-muted">No groups yet.</td>
+            <td colspan="6" class="text-center text-muted">Группы ещё не добавлены.</td>
         </tr>
         {% endfor %}
     </tbody>
