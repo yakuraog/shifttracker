@@ -15,12 +15,21 @@ from shifttracker.db.models import (
     ShiftRecord,
     TelegramGroup,
 )
+from shifttracker.sheets.header_cache import clear_all as clear_header_cache
 from shifttracker.sheets.writer import SheetsWriter
 
 
 # ---------------------------------------------------------------------------
 # Helpers / fixtures
 # ---------------------------------------------------------------------------
+
+
+@pytest.fixture(autouse=True)
+def reset_header_cache():
+    """Clear the in-process header cache before each test for isolation."""
+    clear_header_cache()
+    yield
+    clear_header_cache()
 
 
 def make_settings(**overrides) -> Settings:
@@ -437,11 +446,10 @@ async def test_batch_groups_by_spreadsheet(async_session: AsyncSession):
 
     await writer._flush()
 
-    # Now both sheets were touched — 1 call each
-    assert mock_ws.batch_update.call_count == 1   # same-sheet: emp1+emp2 already WRITTEN, so 0
-    # The new records are emp3 and the already-written emp1/emp2 (which are now WRITTEN, not PENDING)
-    # Actually rec1/rec2 are WRITTEN now, so only rec3 triggers a call on mock_ws2
-    assert mock_ws2.batch_update.call_count == 1
+    # rec1+rec2 are already WRITTEN (from first flush), so same-sheet gets 0 new calls
+    # only rec3 (other-sheet) is still PENDING -> triggers 1 call on mock_ws2
+    assert mock_ws.batch_update.call_count == 0   # same-sheet: emp1+emp2 already WRITTEN
+    assert mock_ws2.batch_update.call_count == 1  # other-sheet: emp3 written now
 
 
 @pytest.mark.asyncio
