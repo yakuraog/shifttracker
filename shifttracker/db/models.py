@@ -19,6 +19,9 @@ class Employee(Base):
     employee_code: Mapped[Optional[str]] = mapped_column(String(50), unique=True, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
+    group_bindings: Mapped[list["GroupEmployee"]] = relationship(back_populates="employee")
+    caption_rules: Mapped[list["CaptionRule"]] = relationship(back_populates="employee")
+
 
 class TelegramGroup(Base):
     __tablename__ = "telegram_groups"
@@ -34,6 +37,9 @@ class TelegramGroup(Base):
     sheet_name: Mapped[Optional[str]] = mapped_column(String(200), nullable=True, default="Sheet1")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
+    group_employees: Mapped[list["GroupEmployee"]] = relationship(back_populates="group")
+    caption_rules: Mapped[list["CaptionRule"]] = relationship(back_populates="group")
+
 
 class GroupEmployee(Base):
     __tablename__ = "group_employees"
@@ -44,6 +50,9 @@ class GroupEmployee(Base):
     employee_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("employees.id"))
     sheet_row: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
 
+    group: Mapped["TelegramGroup"] = relationship(back_populates="group_employees")
+    employee: Mapped["Employee"] = relationship(back_populates="group_bindings")
+
 
 class CaptionRule(Base):
     __tablename__ = "caption_rules"
@@ -52,6 +61,9 @@ class CaptionRule(Base):
     group_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("telegram_groups.id"))
     pattern: Mapped[str] = mapped_column(String(255))
     employee_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("employees.id"))
+
+    group: Mapped["TelegramGroup"] = relationship(back_populates="caption_rules")
+    employee: Mapped["Employee"] = relationship(back_populates="caption_rules")
 
 
 class ShiftRecord(Base):

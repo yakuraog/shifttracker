@@ -13,3 +13,6 @@ class Settings(BaseSettings):
     google_sheets_credentials_file: str = ""  # empty string = Sheets writer disabled
     sheets_flush_interval: int = 5  # seconds between flush cycles
     sheets_max_retries: int = 5  # retry_count threshold before ERROR
+    admin_username: str = "admin"
+    admin_password: str = "changeme"
+    secret_key: str = "dev-secret-change-in-production"
