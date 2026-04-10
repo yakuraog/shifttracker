@@ -13,7 +13,7 @@ ShiftTracker is built in three delivery phases that follow the natural dependenc
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Telegram ingestion, processing pipeline, employee identification, shift date resolution, deduplication, and audit log (completed 2026-04-10)
-- [ ] **Phase 2: Google Sheets Integration** - Batched writes to Google Sheets with rate-limit handling and retry resilience
+- [x] **Phase 2: Google Sheets Integration** - Batched writes to Google Sheets with rate-limit handling and retry resilience (completed 2026-04-10)
 - [ ] **Phase 3: Admin Interface** - Web UI for employee/group configuration, manual review queue, and shift table visibility
 
 ## Phase Details
@@ -46,7 +46,7 @@ Plans:
   3. Sending a second photo for the same employee on the same date does not overwrite or duplicate the existing "1" — the duplicate attempt is logged
   4. During a burst of 70+ write operations within 60 seconds, all marks eventually appear in Sheets without data loss
   5. If Sheets is temporarily unreachable, marks remain in SHEET_WRITE_PENDING state and are retried automatically until they succeed
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 02-01-PLAN.md — Schema extensions, config, dependencies, sheets module (client, header cache, cell resolution)
@@ -71,5 +71,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 4/4 | Complete   | 2026-04-10 |
-| 2. Google Sheets Integration | 0/2 | Planning complete | - |
+| 2. Google Sheets Integration | 2/2 | Complete   | 2026-04-10 |
 | 3. Admin Interface | 0/TBD | Not started | - |

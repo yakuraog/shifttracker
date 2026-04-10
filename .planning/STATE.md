@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-google-sheets-integration/02-01-PLAN.md
-last_updated: "2026-04-10T17:55:07.994Z"
+stopped_at: Completed 02-google-sheets-integration/02-02-PLAN.md
+last_updated: "2026-04-10T18:01:34.903Z"
 last_activity: 2026-04-10 — Roadmap created, 34 v1 requirements mapped to 3 phases
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 6
-  completed_plans: 5
+  completed_plans: 6
   percent: 0
 ---
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P03 | 3 | 2 tasks | 8 files |
 | Phase 01-foundation P04 | 3 | 2 tasks | 4 files |
 | Phase 02-google-sheets-integration P01 | 3 | 2 tasks | 10 files |
+| Phase 02-google-sheets-integration P02 | 10 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,9 @@ Recent decisions affecting current work:
 - [Phase 02-google-sheets-integration]: header_cache uses time.monotonic() not datetime.utcnow() — monotonic clock immune to system clock changes
 - [Phase 02-google-sheets-integration]: resolve_cell tries 4 date formats (DD.MM, D.M, DD.MM.YYYY, D.M.YYYY) — guards against unknown client spreadsheet header format
 - [Phase 02-google-sheets-integration]: google_sheets_credentials_file defaults to empty string — empty means Sheets writer disabled, avoids startup failure when unconfigured
+- [Phase 02-google-sheets-integration]: ProcessingLog.chat_id used to resolve TelegramGroup from ShiftRecord — ShiftRecord has no direct group_id
+- [Phase 02-google-sheets-integration]: SheetsWriter session_factory callable pattern — each flush opens fresh session to avoid stale transactions
+- [Phase 02-google-sheets-integration]: batch_get called before batch_update for duplicate detection — reads all target cells in one API call
 
 ### Pending Todos
 
@@ -91,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T17:55:07.991Z
-Stopped at: Completed 02-google-sheets-integration/02-01-PLAN.md
+Last session: 2026-04-10T18:01:34.900Z
+Stopped at: Completed 02-google-sheets-integration/02-02-PLAN.md
 Resume file: None
