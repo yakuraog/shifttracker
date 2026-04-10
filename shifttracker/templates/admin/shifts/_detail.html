@@ -1,0 +1,49 @@
+<div class="card border-success mt-3">
+    <div class="card-header bg-success-subtle">
+        <strong>Shift Record Details</strong>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Shift Date</dt>
+            <dd class="col-sm-9">{{ record.shift_date }}</dd>
+
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">{{ record.status }}</dd>
+
+            <dt class="col-sm-3">Source Link</dt>
+            <dd class="col-sm-9">
+                <a href="{{ record.source_link }}" target="_blank" rel="noopener">
+                    {{ record.source_link }}
+                </a>
+            </dd>
+
+            <dt class="col-sm-3">Sheet Status</dt>
+            <dd class="col-sm-9">{{ record.sheet_write_status }}</dd>
+        </dl>
+
+        {% if logs %}
+        <hr>
+        <h6>Processing History</h6>
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.created_at.strftime('%Y-%m-%d %H:%M') if log.created_at else '-' }}</td>
+                    <td>{{ log.status }}</td>
+                    <td>{{ log.reason or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-muted mt-2">No processing history available.</p>
+        {% endif %}
+    </div>
+</div>

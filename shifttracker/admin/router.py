@@ -9,6 +9,7 @@ from shifttracker.admin.routers import groups as groups_router
 from shifttracker.admin.routers import employees as employees_router
 from shifttracker.admin.routers import caption_rules as caption_rules_router
 from shifttracker.admin.routers import review
+from shifttracker.admin.routers import shifts as shifts_router
 
 # Absolute path resolution to avoid CWD-relative template loading issues
 templates = Jinja2Templates(directory=str(Path(__file__).parent.parent / "templates"))
@@ -45,5 +46,11 @@ admin_router.include_router(
 # Review queue: /admin/review/ (requires session)
 admin_router.include_router(
     review.router,
+    dependencies=[Depends(require_session)],
+)
+
+# Shift attendance grid: /admin/shifts/ (requires session)
+admin_router.include_router(
+    shifts_router.router,
     dependencies=[Depends(require_session)],
 )
