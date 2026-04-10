@@ -8,8 +8,9 @@ from loguru import logger
 
 from shifttracker.config import Settings
 from shifttracker.bot.router import router as photo_router
-from shifttracker.db.engine import engine
+from shifttracker.db.engine import engine, async_session_factory
 from shifttracker.pipeline.worker import start_workers, stop_workers
+from shifttracker.sheets.writer import SheetsWriter
 
 settings = Settings()
 
@@ -35,6 +36,11 @@ async def lifespan(app: FastAPI):
     app.state.bot = bot
     app.state.dp = dp
 
+    # Start Sheets writer (no-ops gracefully when credentials not configured)
+    sheets_writer = SheetsWriter(settings=settings, session_factory=async_session_factory)
+    await sheets_writer.start()
+    app.state.sheets_writer = sheets_writer
+
     yield
 
     # Shutdown
@@ -44,6 +50,7 @@ async def lifespan(app: FastAPI):
     except asyncio.CancelledError:
         pass
     await stop_workers()
+    await sheets_writer.stop()
     await engine.dispose()
     await bot.session.close()
     logger.info("Shutdown complete")
