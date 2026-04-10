@@ -1,0 +1,69 @@
+<tr id="review-row-{{ item.log.id }}">
+    <td>{{ item.log.created_at.strftime("%Y-%m-%d %H:%M") if item.log.created_at else "-" }}</td>
+    <td>{{ item.group_name }}</td>
+    <td>{{ item.employee_name }}</td>
+    <td><small>{{ item.log.reason or "-" }}</small></td>
+    <td>
+        {% if item.log.source_link %}
+        <a href="{{ item.log.source_link }}" target="_blank" rel="noopener noreferrer">View</a>
+        {% else %}
+        -
+        {% endif %}
+    </td>
+    <td>
+        <!-- Approve accordion trigger -->
+        <button class="btn btn-sm btn-success me-1"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#approve-{{ item.log.id }}"
+                aria-expanded="false">
+            Approve
+        </button>
+        <!-- Reject accordion trigger -->
+        <button class="btn btn-sm btn-danger"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#reject-{{ item.log.id }}"
+                aria-expanded="false">
+            Reject
+        </button>
+
+        <!-- Approve form (collapse) -->
+        <div class="collapse mt-2" id="approve-{{ item.log.id }}">
+            <form hx-post="/admin/review/{{ item.log.id }}/approve"
+                  hx-target="#review-row-{{ item.log.id }}"
+                  hx-swap="outerHTML"
+                  class="border rounded p-2 bg-light">
+                <div class="mb-2">
+                    <label class="form-label small mb-1">Employee</label>
+                    <select name="employee_id" class="form-select form-select-sm" required>
+                        <option value="">Select employee…</option>
+                        {% for emp in employees %}
+                        <option value="{{ emp.id }}">{{ emp.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label small mb-1">Shift Date</label>
+                    <input type="date" name="shift_date" class="form-control form-control-sm" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Confirm Approve</button>
+            </form>
+        </div>
+
+        <!-- Reject form (collapse) -->
+        <div class="collapse mt-2" id="reject-{{ item.log.id }}">
+            <form hx-post="/admin/review/{{ item.log.id }}/reject"
+                  hx-target="#review-row-{{ item.log.id }}"
+                  hx-swap="outerHTML"
+                  class="border rounded p-2 bg-light">
+                <div class="mb-2">
+                    <label class="form-label small mb-1">Comment</label>
+                    <textarea name="comment" class="form-control form-control-sm" rows="2" required
+                              placeholder="Reason for rejection…"></textarea>
+                </div>
+                <button type="submit" class="btn btn-danger btn-sm">Confirm Reject</button>
+            </form>
+        </div>
+    </td>
+</tr>

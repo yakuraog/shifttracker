@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Review Queue — ShiftTracker Admin{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Review Queue</h2>
+
+<!-- Filter form -->
+<form method="get" action="/admin/review/" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <label for="group_id" class="form-label">Group</label>
+        <select name="group_id" id="group_id" class="form-select">
+            <option value="">All Groups</option>
+            {% for group in groups %}
+            <option value="{{ group.id }}" {% if current_group_id == group.id|string %}selected{% endif %}>
+                {{ group.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="date_from" class="form-label">From</label>
+        <input type="date" name="date_from" id="date_from" class="form-control" value="{{ date_from }}">
+    </div>
+    <div class="col-md-3">
+        <label for="date_to" class="form-label">To</label>
+        <input type="date" name="date_to" id="date_to" class="form-control" value="{{ date_to }}">
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-secondary w-100">Filter</button>
+    </div>
+</form>
+
+{% if items %}
+<table class="table table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Created</th>
+            <th>Group</th>
+            <th>Employee</th>
+            <th>Reason</th>
+            <th>Source</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="review-table-body">
+        {% for item in items %}
+        {% include "admin/review/_item.html" %}
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-success">No items pending review.</div>
+{% endif %}
+{% endblock %}
