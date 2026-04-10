@@ -59,7 +59,7 @@ Requirements for MVP release. Each maps to roadmap phases.
 - [ ] **ADMIN-03**: Администратор настраивает правила привязки групп к сотрудникам и объектам
 - [ ] **ADMIN-04**: Администратор настраивает допустимые временные окна подтверждения смены
 - [ ] **ADMIN-05**: Администратор настраивает правила идентификации (шаблоны подписей, привязки аккаунтов)
-- [ ] **ADMIN-06**: Веб-интерфейс для всех функций администрирования
+- [x] **ADMIN-06**: Веб-интерфейс для всех функций администрирования
 - [ ] **ADMIN-07**: Руководитель может просматривать итоговую таблицу и отчетность по выходам на смену
 
 ## v2 Requirements
@@ -128,7 +128,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | ADMIN-03 | Phase 3 | Pending |
 | ADMIN-04 | Phase 3 | Pending |
 | ADMIN-05 | Phase 3 | Pending |
-| ADMIN-06 | Phase 3 | Pending |
+| ADMIN-06 | Phase 3 | Complete |
 | ADMIN-07 | Phase 3 | Pending |
 
 **Coverage:**

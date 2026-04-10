@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-google-sheets-integration/02-02-PLAN.md
-last_updated: "2026-04-10T18:04:43.049Z"
+stopped_at: Completed 03-admin-interface/03-01-PLAN.md
+last_updated: "2026-04-10T18:46:38.264Z"
 last_activity: 2026-04-10 — Roadmap created, 34 v1 requirements mapped to 3 phases
 progress:
   total_phases: 3
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 10
+  completed_plans: 7
   percent: 0
 ---
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-foundation P04 | 3 | 2 tasks | 4 files |
 | Phase 02-google-sheets-integration P01 | 3 | 2 tasks | 10 files |
 | Phase 02-google-sheets-integration P02 | 10 | 2 tasks | 3 files |
+| Phase 03-admin-interface P01 | 4 | 2 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -83,6 +84,9 @@ Recent decisions affecting current work:
 - [Phase 02-google-sheets-integration]: ProcessingLog.chat_id used to resolve TelegramGroup from ShiftRecord — ShiftRecord has no direct group_id
 - [Phase 02-google-sheets-integration]: SheetsWriter session_factory callable pattern — each flush opens fresh session to avoid stale transactions
 - [Phase 02-google-sheets-integration]: batch_get called before batch_update for duplicate detection — reads all target cells in one API call
+- [Phase 03-admin-interface]: Starlette 1.0 TemplateResponse takes request as first positional arg — updated all TemplateResponse calls in admin templates
+- [Phase 03-admin-interface]: require_session raises HTTPException(303) with Location header for Depends-compatible redirect guard
+- [Phase 03-admin-interface]: test_client fixture uses minimal FastAPI app without lifespan to skip bot/workers startup in tests
 
 ### Pending Todos
 
@@ -95,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T18:01:34.900Z
-Stopped at: Completed 02-google-sheets-integration/02-02-PLAN.md
+Last session: 2026-04-10T18:46:38.262Z
+Stopped at: Completed 03-admin-interface/03-01-PLAN.md
 Resume file: None
