@@ -231,3 +231,90 @@ def test_group_employee_binding(test_client):
     # The group name may still appear in the "Add Binding" dropdown — that's expected.
     resp = test_client.get(f"/admin/employees/{emp_id}/edit")
     assert binding_id not in resp.text
+
+
+# ---------------------------------------------------------------------------
+# Caption Rules
+# ---------------------------------------------------------------------------
+
+def test_caption_rule_crud(test_client):
+    login(test_client)
+
+    # Create prerequisite group
+    test_client.post(
+        "/admin/groups/add",
+        data={
+            "name": "RuleGroup",
+            "chat_id": "-100555444",
+            "sheet_id": "",
+            "sheet_name": "Sheet1",
+            "shift_start_hour": "6",
+            "shift_end_hour": "22",
+            "timezone": "Europe/Moscow",
+        },
+        follow_redirects=True,
+    )
+
+    # Create prerequisite employee
+    test_client.post(
+        "/admin/employees/add",
+        data={"name": "RuleEmployee", "telegram_user_id": "", "employee_code": ""},
+        follow_redirects=True,
+    )
+
+    import re
+
+    resp_groups = test_client.get("/admin/groups/")
+    match = re.search(r'/admin/groups/([0-9a-f-]+)/edit', resp_groups.text)
+    assert match
+    group_id = match.group(1)
+
+    resp_employees = test_client.get("/admin/employees/")
+    match = re.search(r'/admin/employees/([0-9a-f-]+)/edit', resp_employees.text)
+    assert match
+    emp_id = match.group(1)
+
+    # Create caption rule
+    resp = test_client.post(
+        "/admin/caption-rules/add",
+        data={
+            "group_id": group_id,
+            "employee_id": emp_id,
+            "pattern": "john.*doe",
+        },
+        follow_redirects=True,
+    )
+    assert resp.status_code == 200
+
+    # List — verify pattern visible
+    resp = test_client.get("/admin/caption-rules/")
+    assert resp.status_code == 200
+    assert "john.*doe" in resp.text
+    assert "RuleGroup" in resp.text
+    assert "RuleEmployee" in resp.text
+
+    # Get rule id
+    match = re.search(r'/admin/caption-rules/([0-9a-f-]+)/edit', resp.text)
+    assert match, "Could not find edit link in caption-rules list"
+    rule_id = match.group(1)
+
+    # Edit — change pattern
+    resp = test_client.post(
+        f"/admin/caption-rules/{rule_id}/edit",
+        data={
+            "group_id": group_id,
+            "employee_id": emp_id,
+            "pattern": "jane.*smith",
+        },
+        follow_redirects=True,
+    )
+    assert resp.status_code == 200
+    assert "jane.*smith" in resp.text
+
+    # Delete
+    resp = test_client.delete(f"/admin/caption-rules/{rule_id}")
+    assert resp.status_code == 200
+
+    # Verify deleted
+    resp = test_client.get("/admin/caption-rules/")
+    assert "jane.*smith" not in resp.text
