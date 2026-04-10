@@ -54,11 +54,11 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 ### Administration
 
-- [ ] **ADMIN-01**: Администратор управляет списком подключенных Telegram-групп
-- [ ] **ADMIN-02**: Администратор управляет справочником сотрудников (CRUD)
-- [ ] **ADMIN-03**: Администратор настраивает правила привязки групп к сотрудникам и объектам
-- [ ] **ADMIN-04**: Администратор настраивает допустимые временные окна подтверждения смены
-- [ ] **ADMIN-05**: Администратор настраивает правила идентификации (шаблоны подписей, привязки аккаунтов)
+- [x] **ADMIN-01**: Администратор управляет списком подключенных Telegram-групп
+- [x] **ADMIN-02**: Администратор управляет справочником сотрудников (CRUD)
+- [x] **ADMIN-03**: Администратор настраивает правила привязки групп к сотрудникам и объектам
+- [x] **ADMIN-04**: Администратор настраивает допустимые временные окна подтверждения смены
+- [x] **ADMIN-05**: Администратор настраивает правила идентификации (шаблоны подписей, привязки аккаунтов)
 - [x] **ADMIN-06**: Веб-интерфейс для всех функций администрирования
 - [ ] **ADMIN-07**: Руководитель может просматривать итоговую таблицу и отчетность по выходам на смену
 
@@ -123,11 +123,11 @@ Deferred to future release. Tracked but not in current roadmap.
 | REVIEW-02 | Phase 3 | Complete |
 | REVIEW-03 | Phase 3 | Complete |
 | REVIEW-04 | Phase 3 | Complete |
-| ADMIN-01 | Phase 3 | Pending |
-| ADMIN-02 | Phase 3 | Pending |
-| ADMIN-03 | Phase 3 | Pending |
-| ADMIN-04 | Phase 3 | Pending |
-| ADMIN-05 | Phase 3 | Pending |
+| ADMIN-01 | Phase 3 | Complete |
+| ADMIN-02 | Phase 3 | Complete |
+| ADMIN-03 | Phase 3 | Complete |
+| ADMIN-04 | Phase 3 | Complete |
+| ADMIN-05 | Phase 3 | Complete |
 | ADMIN-06 | Phase 3 | Complete |
 | ADMIN-07 | Phase 3 | Pending |
 
