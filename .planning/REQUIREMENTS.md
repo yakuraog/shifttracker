@@ -9,11 +9,11 @@ Requirements for MVP release. Each maps to roadmap phases.
 
 ### Telegram Ingestion
 
-- [ ] **TGRAM-01**: Бот принимает фотографии с подписями из подключенных Telegram-групп в реальном времени
-- [ ] **TGRAM-02**: Бот фильтрует нерелевантные сообщения (без фото) и не обрабатывает их
+- [x] **TGRAM-01**: Бот принимает фотографии с подписями из подключенных Telegram-групп в реальном времени
+- [x] **TGRAM-02**: Бот фильтрует нерелевантные сообщения (без фото) и не обрабатывает их
 - [x] **TGRAM-03**: Повторная обработка одного и того же сообщения не создает дублей (дедупликация по update_id)
-- [ ] **TGRAM-04**: Бот корректно обрабатывает миграцию группы в супергруппу (migrate_to_chat_id)
-- [ ] **TGRAM-05**: При пиковых нагрузках сообщения ставятся в очередь без потери
+- [x] **TGRAM-04**: Бот корректно обрабатывает миграцию группы в супергруппу (migrate_to_chat_id)
+- [x] **TGRAM-05**: При пиковых нагрузках сообщения ставятся в очередь без потери
 
 ### Employee Identification
 
@@ -96,11 +96,11 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TGRAM-01 | Phase 1 | Pending |
-| TGRAM-02 | Phase 1 | Pending |
+| TGRAM-01 | Phase 1 | Complete |
+| TGRAM-02 | Phase 1 | Complete |
 | TGRAM-03 | Phase 1 | Complete |
-| TGRAM-04 | Phase 1 | Pending |
-| TGRAM-05 | Phase 1 | Pending |
+| TGRAM-04 | Phase 1 | Complete |
+| TGRAM-05 | Phase 1 | Complete |
 | IDENT-01 | Phase 1 | Complete |
 | IDENT-02 | Phase 1 | Complete |
 | IDENT-03 | Phase 1 | Complete |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-foundation/01-02-PLAN.md
-last_updated: "2026-04-10T17:23:24.185Z"
+stopped_at: Completed 01-foundation/01-03-PLAN.md
+last_updated: "2026-04-10T17:23:00Z"
 last_activity: 2026-04-10 — Roadmap created, 34 v1 requirements mapped to 3 phases
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -52,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 4 | 2 tasks | 14 files |
 | Phase 01-foundation P02 | 3 | 2 tasks | 8 files |
+| Phase 01-foundation P03 | 3 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: telegram_account match is definitive early return — no other steps evaluated
 - [Phase 01-foundation]: Night shift detection: shift_start_hour > shift_end_hour boolean, no flag needed
 - [Phase 01-foundation]: tzdata added to dev deps for Windows zoneinfo named timezone support
+- [Phase 01-foundation]: event_update: Update DI parameter used in handle_photo for real update_id (never hardcoded)
+- [Phase 01-foundation]: IntegrityError catch for dedup — compatible with SQLite in tests and PostgreSQL in prod
 
 ### Pending Todos
 
@@ -81,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-10T17:23:24.182Z
-Stopped at: Completed 01-foundation/01-02-PLAN.md
+Last session: 2026-04-10T17:23:00Z
+Stopped at: Completed 01-foundation/01-03-PLAN.md
 Resume file: None
