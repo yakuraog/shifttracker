@@ -1,8 +1,10 @@
 services:
   - type: web
     name: shifttracker
-    runtime: docker
+    runtime: python
     plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn shifttracker.app:create_app --factory --host 0.0.0.0 --port $PORT
     envVars:
       - key: BOT_TOKEN
         sync: false
@@ -16,3 +18,5 @@ services:
         generateValue: true
       - key: LOG_LEVEL
         value: INFO
+      - key: PYTHON_VERSION
+        value: "3.11.0"
