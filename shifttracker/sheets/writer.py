@@ -109,60 +109,59 @@ class SheetsWriter:
     async def _flush(self) -> None:
         """Single flush pass: process all PENDING ShiftRecords."""
         # Support both sync sessionmaker (production) and async factory (tests)
-        result = self._session_factory()
-        if hasattr(result, '__aenter__'):
-            session: AsyncSession = result
+        factory_result = self._session_factory()
+        _owns_session = False
+        if hasattr(factory_result, '__aenter__'):
+            # sync sessionmaker — we own this session and must close it
+            session: AsyncSession = factory_result
+            _owns_session = True
         else:
-            session: AsyncSession = await result
+            # async factory (tests) — caller owns the session
+            session: AsyncSession = await factory_result
 
-        # ------------------------------------------------------------------
-        # 1. Load all PENDING records
-        # ------------------------------------------------------------------
-        result = await session.execute(
-            select(ShiftRecord).where(ShiftRecord.sheet_write_status == "PENDING")
-        )
-        pending: list[ShiftRecord] = list(result.scalars().all())
-
-        if not pending:
-            return
-
-        # ------------------------------------------------------------------
-        # 2. Resolve context for each record: sheet_id, sheet_name, sheet_row
-        # ------------------------------------------------------------------
-        # We need: TelegramGroup (sheet_id, sheet_name) and GroupEmployee.sheet_row.
-        # Strategy: use ProcessingLog.chat_id (same source_message_id) to find
-        # the TelegramGroup. Then find GroupEmployee for (group_id, employee_id).
-        # If ambiguous (employee in multiple groups), use the ProcessingLog chat_id.
-
-        # Group records by (sheet_id, sheet_name) for batching
-        grouped: dict[tuple[str, str], list[tuple[ShiftRecord, int]]] = {}
-        # Maps record.id -> worksheet object (resolved later per sheet)
-
-        for record in pending:
-            context = await self._resolve_record_context(session, record)
-            if context is None:
-                # sheet_id not configured — skip silently
-                continue
-
-            sheet_id, sheet_name, sheet_row = context
-
-            # Validate sheet_row
-            if not sheet_row or sheet_row < 1:
-                await self._set_record_error(
-                    session, record, "employee_row_not_configured"
-                )
-                continue
-
-            key = (sheet_id, sheet_name)
-            grouped.setdefault(key, []).append((record, sheet_row))
-
-        # ------------------------------------------------------------------
-        # 3. Process each (sheet_id, sheet_name) group with a single batch_update
-        # ------------------------------------------------------------------
-        for (sheet_id, sheet_name), items in grouped.items():
-            await self._process_sheet_group(
-                session, sheet_id, sheet_name, items
+        try:
+            # ------------------------------------------------------------------
+            # 1. Load all PENDING records
+            # ------------------------------------------------------------------
+            result = await session.execute(
+                select(ShiftRecord).where(ShiftRecord.sheet_write_status == "PENDING")
             )
+            pending: list[ShiftRecord] = list(result.scalars().all())
+
+            if not pending:
+                return
+
+            # ------------------------------------------------------------------
+            # 2. Resolve context for each record: sheet_id, sheet_name, sheet_row
+            # ------------------------------------------------------------------
+            grouped: dict[tuple[str, str], list[tuple[ShiftRecord, int]]] = {}
+
+            for record in pending:
+                context = await self._resolve_record_context(session, record)
+                if context is None:
+                    continue
+
+                sheet_id, sheet_name, sheet_row = context
+
+                if not sheet_row or sheet_row < 1:
+                    await self._set_record_error(
+                        session, record, "employee_row_not_configured"
+                    )
+                    continue
+
+                key = (sheet_id, sheet_name)
+                grouped.setdefault(key, []).append((record, sheet_row))
+
+            # ------------------------------------------------------------------
+            # 3. Process each (sheet_id, sheet_name) group with a single batch_update
+            # ------------------------------------------------------------------
+            for (sheet_id, sheet_name), items in grouped.items():
+                await self._process_sheet_group(
+                    session, sheet_id, sheet_name, items
+                )
+        finally:
+            if _owns_session:
+                await session.close()
 
     # ------------------------------------------------------------------
     # Context resolution helpers
