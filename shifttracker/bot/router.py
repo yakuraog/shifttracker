@@ -1,5 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import Message, Update
+from loguru import logger
 from sqlalchemy import select, update
 
 from shifttracker.db.engine import async_session_factory
@@ -30,6 +31,12 @@ async def handle_photo(message: Message, event_update: Update) -> None:
     Receives the parent Update via aiogram 3 dependency injection (event_update parameter)
     to extract the real update_id for deduplication (TGRAM-03).
     """
+    logger.info(
+        f"Получено фото: chat_id={message.chat.id}, "
+        f"user_id={message.from_user.id if message.from_user else '?'}, "
+        f"caption='{message.caption or ''}'"
+    )
+
     is_valid, reason = validate_message(message)
     if not is_valid:
         # Log skip with real update_id from the Update object
