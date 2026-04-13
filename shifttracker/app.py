@@ -11,7 +11,7 @@ from shifttracker.config import Settings
 from shifttracker.bot.router import router as photo_router
 from shifttracker.db.engine import engine, async_session_factory
 from shifttracker.db.models import Base
-from shifttracker.pipeline.worker import start_workers, stop_workers
+from shifttracker.pipeline.worker import start_workers, stop_workers, set_bot
 from shifttracker.sheets.writer import SheetsWriter
 from shifttracker.admin.router import admin_router
 
@@ -50,6 +50,7 @@ async def lifespan(app: FastAPI):
 
             app.state.bot = bot
             app.state.dp = dp
+            set_bot(bot)  # Для уведомлений оператору
         except Exception as e:
             logger.warning(f"Bot startup skipped: {e}")
             bot = None
@@ -79,7 +80,12 @@ async def lifespan(app: FastAPI):
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="ShiftTracker", version="0.1.0", lifespan=lifespan)
+    app = FastAPI(
+        title="ShiftTracker API",
+        version="0.1.0",
+        description="Система автоматического заполнения таблицы смен на основе фотографий из Telegram-групп",
+        lifespan=lifespan,
+    )
 
     # Session middleware must be added before routers
     app.add_middleware(SessionMiddleware, secret_key=settings.secret_key)

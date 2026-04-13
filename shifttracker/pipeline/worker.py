@@ -3,6 +3,7 @@ import asyncio
 from loguru import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from shifttracker.config import Settings
 from shifttracker.db.engine import async_session_factory
 from shifttracker.db.models import ProcessingLog, ShiftRecord
 from shifttracker.pipeline.models import ProcessingContext
@@ -10,6 +11,33 @@ from shifttracker.pipeline.queue import message_queue
 from shifttracker.pipeline.stages.deduplicate import check_business_duplicate, check_duplicate
 from shifttracker.pipeline.stages.identify import identify_employee
 from shifttracker.pipeline.stages.shift_date import resolve_shift_date
+
+_bot_instance = None
+
+
+def set_bot(bot):
+    """Set bot instance for sending operator notifications."""
+    global _bot_instance
+    _bot_instance = bot
+
+
+async def _notify_operator(reason: str, ctx: ProcessingContext):
+    """Send notification to operator when message needs review."""
+    settings = Settings()
+    if not settings.operator_chat_id or not _bot_instance:
+        return
+    try:
+        text = (
+            f"Требуется проверка\n\n"
+            f"Причина: {reason}\n"
+            f"Группа chat_id: {ctx.chat_id}\n"
+            f"Подпись: {ctx.caption or 'нет'}\n"
+        )
+        if ctx.source_link:
+            text += f"Источник: {ctx.source_link}"
+        await _bot_instance.send_message(settings.operator_chat_id, text)
+    except Exception as e:
+        logger.warning(f"Failed to notify operator: {e}")
 
 
 async def process_message(ctx: ProcessingContext, session: AsyncSession) -> None:
@@ -44,6 +72,7 @@ async def process_message(ctx: ProcessingContext, session: AsyncSession) -> None
         )
         session.add(log_entry)
         await session.commit()
+        await _notify_operator("Сотрудник не определён", ctx)
         return
 
     # Step 3+4+5: For each identified employee
@@ -69,6 +98,7 @@ async def process_message(ctx: ProcessingContext, session: AsyncSession) -> None
             )
             session.add(log_entry)
             await session.commit()
+            await _notify_operator(f"Вне окна смены ({ident.employee_name})", ctx)
             continue
 
         # Step 4: Business dedup (employee + date)

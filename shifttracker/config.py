@@ -16,3 +16,4 @@ class Settings(BaseSettings):
     admin_username: str = "admin"
     admin_password: str = "changeme"
     secret_key: str = "dev-secret-change-in-production"
+    operator_chat_id: int = 0  # 0 = уведомления отключены; Telegram chat_id оператора
