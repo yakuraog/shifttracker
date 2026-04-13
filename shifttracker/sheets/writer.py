@@ -59,21 +59,25 @@ class SheetsWriter:
         """Start the background flush loop.
 
         No-ops (with a warning) when credentials are not configured.
-        Raises RuntimeError if credentials file path does not exist on disk.
+        Supports both file path and raw JSON string for credentials.
         """
-        if not self._settings.google_sheets_credentials_file:
+        cred_file = self._settings.google_sheets_credentials_file
+        cred_json = self._settings.google_sheets_credentials_json
+
+        if not cred_file and not cred_json:
             logger.warning(
-                "GOOGLE_SHEETS_CREDENTIALS_FILE not set — SheetsWriter disabled"
+                "Google Sheets credentials not configured — SheetsWriter disabled"
             )
             return
 
-        cred_path = self._settings.google_sheets_credentials_file
-        if not os.path.exists(cred_path):
-            raise RuntimeError(
-                f"GOOGLE_SHEETS_CREDENTIALS_FILE not found: {cred_path}"
-            )
-
-        self._gc = await _run_sync(build_client, cred_path)
+        if cred_json:
+            self._gc = await _run_sync(build_client, credentials_json=cred_json)
+        elif cred_file:
+            if not os.path.exists(cred_file):
+                raise RuntimeError(
+                    f"GOOGLE_SHEETS_CREDENTIALS_FILE not found: {cred_file}"
+                )
+            self._gc = await _run_sync(build_client, credentials_file=cred_file)
         self._task = asyncio.create_task(self._flush_loop())
         logger.info("SheetsWriter background task started")
 

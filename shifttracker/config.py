@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     queue_max_size: int = 500
     worker_count: int = 8
     log_level: str = "INFO"
-    google_sheets_credentials_file: str = ""  # empty string = Sheets writer disabled
+    google_sheets_credentials_file: str = ""  # path to JSON key file (local dev)
+    google_sheets_credentials_json: str = ""  # raw JSON string (cloud deploy)
     sheets_flush_interval: int = 5  # seconds between flush cycles
     sheets_max_retries: int = 5  # retry_count threshold before ERROR
     admin_username: str = "admin"
