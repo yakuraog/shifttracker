@@ -1,0 +1,7 @@
+.env
+shifttracker.db
+__pycache__/
+*.pyc
+*.egg-info/
+.planning/
+data/

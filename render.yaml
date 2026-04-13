@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: shifttracker
+    runtime: docker
+    plan: free
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///data/shifttracker.db
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: LOG_LEVEL
+        value: INFO
+    disk:
+      name: shifttracker-data
+      mountPath: /app/data
+      sizeGB: 1
