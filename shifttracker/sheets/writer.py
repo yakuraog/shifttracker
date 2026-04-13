@@ -108,7 +108,12 @@ class SheetsWriter:
 
     async def _flush(self) -> None:
         """Single flush pass: process all PENDING ShiftRecords."""
-        session: AsyncSession = await self._session_factory()
+        # Support both sync sessionmaker (production) and async factory (tests)
+        result = self._session_factory()
+        if hasattr(result, '__aenter__'):
+            session: AsyncSession = result
+        else:
+            session: AsyncSession = await result
 
         # ------------------------------------------------------------------
         # 1. Load all PENDING records
