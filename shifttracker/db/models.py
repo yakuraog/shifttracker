@@ -34,7 +34,7 @@ class TelegramGroup(Base):
     timezone: Mapped[str] = mapped_column(String(50), default="Europe/Moscow")
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     sheet_id: Mapped[Optional[str]] = mapped_column(String(200), nullable=True)
-    sheet_name: Mapped[Optional[str]] = mapped_column(String(200), nullable=True, default="Sheet1")
+    sheet_name: Mapped[Optional[str]] = mapped_column(String(200), nullable=True, default="Лист1")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     group_employees: Mapped[list["GroupEmployee"]] = relationship(back_populates="group")
