@@ -192,9 +192,10 @@ async def test_source_link_written(seeded_session):
     ranges_data = call_args[0][0]
     value_updates = {item["range"]: item["values"] for item in ranges_data}
 
-    # Link cell is col+1 = C3
-    assert "C3" in value_updates
-    assert value_updates["C3"] == [["https://t.me/c/1001/42"]]
+    # "1" written to value cell, no link cell written (link only in admin UI)
+    assert "B3" in value_updates
+    assert value_updates["B3"] == [["1"]]
+    assert "C3" not in value_updates
 
 
 @pytest.mark.asyncio

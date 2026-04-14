@@ -311,7 +311,6 @@ class SheetsWriter:
                 continue
 
             updates.append({"range": value_a1, "values": [["1"]]})
-            updates.append({"range": link_a1, "values": [[record.source_link]]})
             to_write.append(record)
 
         if not updates:
